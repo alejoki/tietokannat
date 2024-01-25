@@ -1,0 +1,28 @@
+a) Minkä nimisiä osastoja (Departments) Employees-tietokannassa on ?
+mysql> select dept_name from departments;
+- Customer Service, Development, Finance, Human Resources, Marketing, Production, Quality Management, Research, Sales
+
+b) Tulosta, (yhden kerran kukin) mitä nimikkeitä (title) tietokannassa on.
+mysql> select distinct title from titles;
+- Senior Engineer, Staff, Engineer, Senior Staff, Assistant Engineer, Technique Leader, Manager
+
+c) Mikä on suurin ja pienin palkka (salary) ? VIHJE: MIN, MAX
+mysql> select min(salary) from salaries;
+- 38623
+mysql> select max(salary) from salaries;
+- 158220
+
+d) Mikä on keskimääräinen palkka ? VIHJE: AVG
+mysql> select avg(salary) from salaries;
+- 63810.7448
+
+e) Tulosta kaikki työntekijät, joiden sukunimi on Facello.
+mysql> select * from employees where last_name = "Facello";
+
+f) Kuinka moni työntekijä on syntynyt 1950-luvulla ?
+mysql> select count(*) from employees where birth_date > "1949-12-31" and birth_date < "1960-01-01";
+- 182886
+
+g) Montako miestä ja montako naista työntekijöissä on ?
+mysql> select gender, count(*) from employees group by gender;
+- M: 179973, N: 120051
