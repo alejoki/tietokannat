@@ -1,0 +1,45 @@
+mysql> select * from opintojakso;
++---------------+-------+---------+----------------------+
+| idOpintojakso | Koodi | Laajuus | Nimi                 |
++---------------+-------+---------+----------------------+
+|             1 | K2302 |       5 | Ohjelmointi 1        |
+|             2 | K2303 |      10 | Ohjelmointi 2        |
+|             3 | K3201 |       3 | Fysiikan perusteet   |
+|             4 | K3301 |       5 | Matematiikka         |
+|             5 | K2021 |       3 | Arduino              |
+|             6 | K2021 |       8 | Tietokannat          |
+|             7 | K1100 |       3 | Peukalon pyörittely  |
++---------------+-------+---------+----------------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from opiskelija;
++--------------+---------+----------+---------------+--------------+
+| idOpiskelija | Etunimi | Sukunimi | Osoite        | Luokkatunnus |
++--------------+---------+----------+---------------+--------------+
+|            1 | Aku     | Ankka    | Ankkakatu 334 | L42          |
+|            2 | Hannu   | Hanhi    | Ankkakatu 254 | L42          |
+|            3 | Hessu   | Hopo     | Ankkakatu 99  | L42          |
+|            4 | Mikki   | Hiiri    | Ankkakatu 23  | L29          |
+|            5 | Roope   | Ankka    | Ankkakatu 577 | L29          |
++--------------+---------+----------+---------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> select etunimi, sukunimi, arvosana, paivamaara, nimi from arviointi join opiskelija on opiskelija.idOpiskelija = Arviointi.idOpiskelija join opintojakso on opintojakso.idOpintojakso = arviointi.idOpintojakso;
++---------+----------+----------+------------+----------------------+
+| etunimi | sukunimi | arvosana | paivamaara | nimi                 |
++---------+----------+----------+------------+----------------------+
+| Aku     | Ankka    |        3 | 2024-02-04 | Ohjelmointi 1        |
+| Aku     | Ankka    |        2 | 2024-02-04 | Matematiikka         |
+| Aku     | Ankka    |        5 | 2024-02-04 | Peukalon pyörittely  |
+| Hannu   | Hanhi    |        5 | 2024-02-04 | Peukalon pyörittely  |
+| Hannu   | Hanhi    |        4 | 2024-02-04 | Tietokannat          |
+| Hannu   | Hanhi    |        3 | 2024-02-04 | Fysiikan perusteet   |
+| Mikki   | Hiiri    |        3 | 2024-02-04 | Ohjelmointi 1        |
+| Mikki   | Hiiri    |        4 | 2024-02-04 | Ohjelmointi 2        |
+| Hessu   | Hopo     |        2 | 2024-02-04 | Ohjelmointi 2        |
+| Hessu   | Hopo     |        1 | 2024-02-04 | Matematiikka         |
+| Roope   | Ankka    |        5 | 2024-02-04 | Arduino              |
+| Roope   | Ankka    |        2 | 2024-02-04 | Matematiikka         |
+| Roope   | Ankka    |        3 | 2024-02-04 | Peukalon pyörittely  |
++---------+----------+----------+------------+----------------------+
+13 rows in set (0.00 sec)
