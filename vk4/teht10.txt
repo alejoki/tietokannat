@@ -1,0 +1,48 @@
+1)
+mysql> select distinct etunimi, sukunimi from arviointi join opiskelija on opiskelija.idOpiskelija = arviointi.idOpiskelija where arvosana = 0;
++---------+----------+
+| etunimi | sukunimi |
++---------+----------+
+| Roope   | Ankka    |
+| Mikki   | Hiiri    |
++---------+----------+
+2 rows in set (0.00 sec)
+
+2) 
+Fysiika 3 tilalla Ohjelmointi 1
+mysql> select distinct etunimi, sukunimi, nimi, arvosana from arviointi join opiskelija on opiskelija.idOpiskelija = arviointi.idOpiskelija join opintojakso on opintojakso.idOpintojakso = arviointi.idOpintojakso where arvosana >= 1 and nimi = 'Ohjelmointi 1';
++---------+----------+---------------+----------+
+| etunimi | sukunimi | nimi          | arvosana |
++---------+----------+---------------+----------+
+| Aku     | Ankka    | Ohjelmointi 1 |        3 |
+| Mikki   | Hiiri    | Ohjelmointi 1 |        3 |
++---------+----------+---------------+----------+
+2 rows in set (0.00 sec)
+
+3)
+mysql> select distinct nimi from opintojakso join arviointi on arviointi.idOpintojakso = opintojakso.idOpintojakso where arviointi.idOpiskelija = 3;
++---------------+
+| nimi          |
++---------------+
+| Ohjelmointi 2 |
+| Matematiikka  |
++---------------+
+2 rows in set (0.00 sec)
+
+4)
+mysql> select AVG(arvosana) from arviointi join opiskelija on opiskelija.idOpiskelija = arviointi.idOpiskelija where arviointi.idOpiskelija = 1;
++---------------+
+| AVG(arvosana) |
++---------------+
+|        3.3333 |
++---------------+
+1 row in set (0.00 sec)
+
+5)
+mysql> select nimi from opintojakso left join arviointi on arviointi.idOpintojakso = opintojakso.idOpintojakso where idArviointi is null;
++---------------------+
+| nimi                |
++---------------------+
+| Aakkosten perusteet |
++---------------------+
+1 row in set (0.00 sec)
