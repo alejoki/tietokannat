@@ -1,0 +1,32 @@
+
+- Ainakin kaksi samaa kirjaa (pitää tallentua eri pääavaimille)
+
+mysql> select idKirja, teos.nimi from kirja join teos on teos.idTeos = kirja.idTeos where teos.nimi ='Tuntematon Sotilas';
++---------+--------------------+
+| idKirja | nimi               |
++---------+--------------------+
+|       6 | Tuntematon Sotilas |
+|      17 | Tuntematon Sotilas |
+|      18 | Tuntematon Sotilas |
++---------+--------------------+
+
+
+- Kirja, jossa on useampi kuin yksi tekijä.
+
+mysql> select tekija.etunimi, tekija.sukunimi, teos.nimi from tekija_teos join tekija on tekija.idTekija = tekija_teos.idTekija join teos on teos.idTeos = tekija_teos.idTeos;
++---------+----------+----------------------+
+| etunimi | sukunimi | nimi                 |
++---------+----------+----------------------+
+| Oskari  | Saari    | Voittamisen anatomia |
+| Aki     | Hintsa   | Voittamisen anatomia |
++---------+----------+----------------------+
+
+
+- Lainaustapahtuma, jossa asiakas on lainannut kirjan ja se on vielä lainassa.
+
+mysql> select * from lainaus where idLainaus=4;
++-----------+------------+-------------+-----------+---------+------------+
+| idLainaus | LainausPVM | PalautusPVM | idAsiakas | idKirja | Palautettu |
++-----------+------------+-------------+-----------+---------+------------+
+|         4 | 2024-02-11 | 2024-03-12  |         7 |       6 |          0 |
++-----------+------------+-------------+-----------+---------+------------+
